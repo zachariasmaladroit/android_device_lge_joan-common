@@ -26,29 +26,10 @@
 #
 
 import /vendor/etc/init/hw/init.joan_product.rc
-import /vendor/etc/init/hw/init.lge.sensors.rc
 import /vendor/etc/init/hw/init.lge.svelte.rc
-
-# LGE ATD service rc
-import /vendor/etc/init/hw/init.lge.atd.rc
 
 # fingerprints
 import /vendor/etc/init/hw/init.lge.fingerprints.rc
-
-# LGODL
-import /vendor/etc/init/hw/init.lge.modem_log.rc
-
-# LG CPR
-import /vendor/etc/init/hw/init.lge.devLKM.rc
-
-# Start Wi-Fi Service
-import /vendor/etc/init/hw/init.wifi.rc
-
-# Start Wi-Fi Service for Helium
-import /vendor/etc/init/hw/init.wifi_ext.rc
-
-# audio configuration
-import /vendor/etc/init/hw/init.lge.audio.rc
 
 on init
     setprop ro.ssbd.session /dev/block/bootdevice/by-name/eksst
@@ -72,19 +53,6 @@ on fs
     wait /dev/block/bootdevice/by-name/qni
     exec /system/bin/e2fsck -y /dev/block/bootdevice/by-name/qni
     mount ext4 /dev/block/bootdevice/by-name/qni /qni nosuid nodev barrier=1 noatime noauto_da_alloc errors=continue
-
-#on post-fs
-# Support tuxera exfat filesystem
-#	insmod /system/lib/modules/texfat.ko
-
-on post-fs-data
-# change preload directory permission for movetosd about preload app
-    start chmod_dp
-
-# change preload directory permission for movetosd about preload app
-#service chmod_dp /system/vendor/bin/change_permission_preload.sh
-#    disable
-#    oneshot
 
 on early-boot
 #	exec u:r:qti_init_shell:s0 -- /vendor/bin.sh /display_port_permission.sh
@@ -239,9 +207,6 @@ on property:vrcore.mode.on=false
 on property:vrcore.mode.on=true
 	write /sys/devices/virtual/input/lge_touch/vr_status 1
 
-# Bluetooth Split A2DP property
-setprop persist.vendor.bt.a2dp_offload_cap false
-
 # Begin Immersion Changes
     service immvibed /vendor/bin/immvibed -p 99 -u 1000
     class core
@@ -249,9 +214,3 @@ setprop persist.vendor.bt.a2dp_offload_cap false
     group root
     oneshot
 # End Immersion Changes
-
-on early-fs
-    ffu_update
-
-on late-init
-    setprop ro.support.waterproof true
