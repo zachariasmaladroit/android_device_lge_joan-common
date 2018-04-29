@@ -79,6 +79,12 @@ on early-boot
   chmod 644 /sys/class/graphics/fb2/hdcp/tp
   chown system graphics /sys/class/graphics/fb2/hdcp/tp
 
+on post-fs-data
+    # NFC: create data/nfc for nv storage
+    mkdir /data/nfc 0770 nfc nfc
+    mkdir /data/nfc/param 0770 nfc nfc
+    mkdir /data/vendor/nfc 0770 nfc nfc
+
 on boot
 #for Dynamic Resolution Switching
   chmod 644 /sys/class/graphics/fb0/mode
