@@ -40,12 +40,17 @@ on early-init
 
 # TODO: This MUST be disabled not use 'sdcard' in LGE device.
 on init
-#    # Set permissions for persist partition
-#    mkdir /persist 0771 root system
-#
-#    # Support legacy paths
-#    symlink /sdcard /mnt/sdcard
-#    symlink /sdcard /storage/sdcard0
+    # Set permissions for persist partition
+    mkdir /persist 0771 system system
+    # See storage config details at http://source.android.com/tech/storage/
+    mkdir /persist-lg 0771 system system
+    mkdir /sns 0775 system system
+    mkdir /storage 0751 system sdcard_r
+
+    export EXTERNAL_STORAGE /sdcard
+
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
     # Create cgroup mount point for memory
     mkdir /sys/fs/cgroup/memory/bg 0750 root system
@@ -56,6 +61,12 @@ on init
 
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
+
+    chown system system /persist-lg
+    chmod 0771 /persist-lg
+
+    chown system system /sns
+    chmod 0755 /sns
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
