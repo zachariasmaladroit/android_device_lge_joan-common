@@ -57,6 +57,9 @@ on fs
     restorecon_recursive /persist
     mkdir /persist/data 0700 system system
 
+    # Executing tune2fs to reserve some region in /data.(40MB)
+    exec /system/bin/tune2fs -u system -r 10240 /dev/block/bootdevice/by-name/userdata
+
 on post-fs
     start qseecomd
     exec - system system -- /vendor/bin/init.qti.qseecomd.sh

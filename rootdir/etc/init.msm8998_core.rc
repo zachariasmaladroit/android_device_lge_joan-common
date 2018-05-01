@@ -11,10 +11,6 @@ on init
     mkdir /bt_firmware 0771 system system
     mkdir /dsp 0771 media media
 
-on fs
-    # Executing tune2fs to reserve some region in /data.(40MB)
-    exec /system/bin/tune2fs -u system -r 10240 /dev/block/bootdevice/by-name/userdata
-
 on early-boot
 #	exec u:r:qti_init_shell:s0 -- /vendor/bin.sh /display_port_permission.sh
   chmod 644 /sys/class/graphics/fb2/hpd
@@ -230,19 +226,3 @@ service immvibed /vendor/bin/immvibed -p 99 -u 1000
     oneshot
 # End Immersion Changes
 
-
-on property:persist.sys.emmc_size=32G
-    setprop ro.device.memory.system 0
-    setprop ro.device.memory.internal 32
-
-on property:persist.sys.emmc_size=64G
-    setprop ro.device.memory.system 0
-    setprop ro.device.memory.internal 64
-
-on property:persist.sys.emmc_size=128G
-    setprop ro.device.memory.system 0
-    setprop ro.device.memory.internal 128
-
-on property:persist.sys.emmc_size=256G
-    setprop ro.device.memory.system 0
-    setprop ro.device.memory.internal 256
