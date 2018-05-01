@@ -1,7 +1,6 @@
 # This file is imported by init.{ro.hardware}.rc
 
 on init
-    setprop ro.ssbd.session /dev/block/bootdevice/by-name/eksst
     export SDCARD_TRAY_PATH /sys/devices/soc/c0a4900.sdhci/mmc_host/mmc0/cd_status
 
     mkdir /srtc 0755 system system
@@ -13,53 +12,6 @@ on init
     mkdir /dsp 0771 media media
 
 on fs
-    wait /dev/block/bootdevice/by-name/srtc
-    wait /dev/block/bootdevice/by-name/qni
-    exec u:r:setup_fs:s0 -- /system/bin/setup_fs \
-        /dev/block/bootdevice/by-name/srtc \
-        /dev/block/bootdevice/by-name/qni \
-        no_reboot
-
-    wait /dev/block/bootdevice/by-name/srtc
-    exec /system/bin/e2fsck -y /dev/block/bootdevice/by-name/srtc
-    mount ext4 /dev/block/bootdevice/by-name/srtc /srtc nosuid nodev barrier=1 noatime noauto_da_alloc errors=continue
-
-    wait /dev/block/bootdevice/by-name/qni
-    exec /system/bin/e2fsck -y /dev/block/bootdevice/by-name/qni
-    mount ext4 /dev/block/bootdevice/by-name/qni /qni nosuid nodev barrier=1 noatime noauto_da_alloc errors=continue
-
-    wait /dev/block/bootdevice/by-name/persist
-    wait /dev/block/bootdevice/by-name/sns
-    wait /dev/block/bootdevice/by-name/drm
-    wait /dev/block/bootdevice/by-name/mpt
-    exec u:r:setup_fs:s0 root root system -- /system/bin/setup_fs \
-        /dev/block/bootdevice/by-name/persist \
-        /dev/block/bootdevice/by-name/sns \
-        /dev/block/bootdevice/by-name/drm \
-        /dev/block/bootdevice/by-name/mpt \
-        no_reboot
-
-    wait /dev/block/bootdevice/by-name/persist
-    exec /system/bin/e2fsck -y /dev/block/bootdevice/by-name/persist
-    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1 noatime noauto_da_alloc errors=continue
-    restorecon_recursive /persist
-    mkdir /persist/data 0700 system system
-
-    wait /dev/block/bootdevice/by-name/modem
-    mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0
-
-    wait /dev/block/bootdevice/by-name/sns
-    exec /system/bin/e2fsck -y /dev/block/bootdevice/by-name/sns
-    mount ext4 /dev/block/bootdevice/by-name/sns /sns nosuid nodev barrier=1 noatime noauto_da_alloc errors=continue
-
-    wait /dev/block/bootdevice/by-name/drm
-    exec /system/bin/e2fsck -y /dev/block/bootdevice/by-name/drm
-    mount ext4 /dev/block/bootdevice/by-name/drm /persist-lg nosuid nodev barrier=1 noatime noauto_da_alloc errors=continue
-
-    wait /dev/block/bootdevice/by-name/mpt
-    exec /system/bin/e2fsck -y /dev/block/bootdevice/by-name/mpt
-    mount ext4 /dev/block/bootdevice/by-name/mpt /mpt nosuid nodev barrier=1 noatime noauto_da_alloc errors=continue
-
     # Executing tune2fs to reserve some region in /data.(40MB)
     exec /system/bin/tune2fs -u system -r 10240 /dev/block/bootdevice/by-name/userdata
 
