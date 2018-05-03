@@ -37,6 +37,10 @@ on early-init
     mkdir /dsp 0771 media media
     write /proc/sys/kernel/sched_boost 1
 
+    mkdir /srtc 0755 system system
+    mkdir /qni 0755 system system
+    mkdir /mpt 0755 system system
+
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
     chown root system /dev/kmsg
@@ -60,6 +64,7 @@ on init
     mkdir /sns 0775 system system
     mkdir /storage 0751 system sdcard_r
 
+    export SDCARD_TRAY_PATH /sys/devices/soc/c0a4900.sdhci/mmc_host/mmc0/cd_status
     export EXTERNAL_STORAGE /sdcard
 
     symlink /sdcard /mnt/sdcard

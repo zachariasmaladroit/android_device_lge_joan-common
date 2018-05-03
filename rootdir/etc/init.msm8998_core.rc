@@ -1,15 +1,15 @@
 # This file is imported by init.{ro.hardware}.rc
 
-on init
-    export SDCARD_TRAY_PATH /sys/devices/soc/c0a4900.sdhci/mmc_host/mmc0/cd_status
-
-    mkdir /srtc 0755 system system
-    mkdir /qni 0755 system system
-
-    mkdir /mpt 0755 system system
-    mkdir /firmware 0771 system system
-    mkdir /bt_firmware 0771 system system
-    mkdir /dsp 0771 media media
+#on init
+#    export SDCARD_TRAY_PATH /sys/devices/soc/c0a4900.sdhci/mmc_host/mmc0/cd_status
+#
+#    mkdir /srtc 0755 system system
+#    mkdir /qni 0755 system system
+#
+#    mkdir /mpt 0755 system system
+#    mkdir /firmware 0771 system system
+#    mkdir /bt_firmware 0771 system system
+#    mkdir /dsp 0771 media media
 
 on early-boot
 #	exec u:r:qti_init_shell:s0 -- /vendor/bin.sh /display_port_permission.sh
