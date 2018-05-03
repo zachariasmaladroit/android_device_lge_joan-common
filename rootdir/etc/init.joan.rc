@@ -335,6 +335,147 @@ on boot
     # load WIGIG platform driver
     insmod /vendor/lib/modules/msm_11ad_proxy.ko
 
+   chown system input /sys/devices/virtual/input/lge_fingerprint/testmode
+   chown system input /sys/devices/virtual/input/lge_fingerprint/spitest
+   chown system input /sys/devices/virtual/input/lge_fingerprint/zonetest
+   chown system input /sys/devices/virtual/input/lge_fingerprint/checkerbdtest
+   chown system input /sys/devices/virtual/input/lge_fingerprint/rubbertest
+   chown system input /sys/devices/virtual/input/lge_fingerprint/intstatus
+   chown system input /sys/devices/virtual/input/lge_fingerprint/qup_id
+   chown system input /sys/devices/virtual/input/lge_fingerprint/waitfinger
+   chown system input /sys/devices/virtual/input/lge_fingerprint/spi_prepare
+
+   chmod 0660 /sys/devices/virtual/input/lge_fingerprint/testmode
+   chmod 0660 /sys/devices/virtual/input/lge_fingerprint/spitest
+   chmod 0660 /sys/devices/virtual/input/lge_fingerprint/zonetest
+   chmod 0660 /sys/devices/virtual/input/lge_fingerprint/checkerbdtest
+   chmod 0660 /sys/devices/virtual/input/lge_fingerprint/rubbertest
+   chmod 0440 /sys/devices/virtual/input/lge_fingerprint/intstatus
+   chmod 0660 /sys/devices/virtual/input/lge_fingerprint/qup_id
+   chmod 0220 /sys/devices/virtual/input/lge_fingerprint/waitfinger
+   chmod 0660 /sys/devices/virtual/input/lge_fingerprint/spi_prepare
+# FPC device permission
+
+   chown system input /sys/devices/virtual/input/lge_fingerprint/bus_lock
+   chown system input /sys/devices/virtual/input/lge_fingerprint/clk_enable
+   chown system input /sys/devices/virtual/input/lge_fingerprint/fabric_vote
+   chown system input /sys/devices/virtual/input/lge_fingerprint/hw_reset
+   chown system input /sys/devices/virtual/input/lge_fingerprint/irq
+   chown system input /sys/devices/virtual/input/lge_fingerprint/pinctl_set
+   chown system input /sys/devices/virtual/input/lge_fingerprint/spi_prepare
+   chown system input /sys/devices/virtual/input/lge_fingerprint/spi_owner
+   chown system input /sys/devices/virtual/input/lge_fingerprint/regulator_enable
+   chown system input /sys/devices/virtual/input/lge_fingerprint/wakeup_enable
+
+#for Dynamic Resolution Switching
+  chmod 644 /sys/class/graphics/fb0/mode
+  chmod 644 /sys/class/graphics/fb0/modes
+  chmod 644 /sys/class/graphics/fb0/freeze_state
+  chmod 644 /sys/class/graphics/fb0/freeze_state_hal
+  chown system graphics /sys/class/graphics/fb0/mode
+  chown system graphics /sys/class/graphics/fb0/modes
+  chown system graphics /sys/class/graphics/fb0/freeze_state
+  chown system graphics /sys/class/graphics/fb0/freeze_state_hal
+
+#end for Dynamic Resolution Switching
+
+#for Display Control Mode
+  chmod 644 /sys/class/panel/img_tune/boost_status
+  chown system system /sys/class/panel/img_tune/boost_status
+  chmod 644 /sys/class/panel/img_tune/daylight_mode
+  chown system system /sys/class/panel/img_tune/daylight_mode
+  chmod 644 /sys/class/panel/img_tune/screen_mode
+  chown system system /sys/class/panel/img_tune/screen_mode
+  chmod 644 /sys/class/panel/img_tune/video_enhancement
+  chown system system /sys/class/panel/img_tune/video_enhancement
+  chmod 644 system /sys/class/panel/img_tune/color_manager_status
+  chown system system /sys/class/panel/img_tune/color_manager_status
+  chmod 200 /sys/class/panel/img_tune/therm_dim
+  chown system system /sys/class/panel/img_tune/therm_dim
+  chmod 644 /sys/class/panel/img_tune/rgb_tune
+  chown system system /sys/class/panel/img_tune/rgb_tune
+#end for Display Control Mode
+
+#for Display Control Mode
+  chown system system /sys/class/graphics/fb0/msm_fb_persist_mode
+#end Display Control Mode
+#for High Luminance Mode
+  chown system system /sys/devices/virtual/graphics/fb0/hl_mode
+#end for High Luminance Mode
+
+#for Comfort View
+  chmod 644 /sys/class/panel/img_tune/comfort_view
+  chown system system /sys/class/panel/img_tune/comfort_view
+#end for Comfort View
+
+#for Ambient current state
+  chmod 644 /sys/class/graphics/fb0/cur_panel_mode
+  chown system system /sys/class/graphics/fb0/cur_panel_mode
+#end for Ambient current state
+
+#for AOD Area
+  chmod 644 /sys/class/panel/aod/area
+  chown system system /sys/class/panel/aod/area
+#end for AOD Area
+
+#for Ambient Extension Brightness
+  chmod 644 /sys/class/leds/lcd-backlight-ex/brightness
+  chown system system /sys/class/leds/lcd-backlight-ex/brightness
+#end for Ambient Extension Brightness
+
+#for Reader Mode
+  chmod 644 /sys/class/graphics/fb0/reader_mode
+  chown system system /sys/class/graphics/fb0/reader_mode
+#end for Reader Mode
+
+#Sync fb0 nodes with init.qcom.early_boot.sh
+  chmod 644 /sys/class/graphics/fb0/idle_time
+  chown system graphics /sys/class/graphics/fb0/idle_time
+  chmod 644 /sys/class/graphics/fb0/dynamic_fps
+  chown system graphics /sys/class/graphics/fb0/dynamic_fps
+  chmod 644 /sys/class/graphics/fb0/dyn_pu
+  chown system graphics /sys/class/graphics/fb0/dyn_pu
+  chmod 644 /sys/class/graphics/fb0/msm_cmd_autorefresh_en
+  chown system graphics /sys/class/graphics/fb0/msm_cmd_autorefresh_en
+#end Sync fb0 nodes with init.qcom.early_boot.sh
+
+# START touch_driver
+	chown system system /sys/devices/virtual/input/lge_touch/incoming_call
+	chmod 664 /sys/devices/virtual/input/lge_touch/incoming_call
+	chown system system /sys/devices/virtual/input/lge_touch/ime_status
+	chown system oem_4004 /sys/devices/virtual/input/lge_touch/keyguard
+	chmod 664 /sys/devices/virtual/input/lge_touch/keyguard
+	chown system system /sys/devices/virtual/input/lge_touch/debug_tool
+	chmod 664 /sys/devices/virtual/input/lge_touch/debug_tool
+	chown system system /sys/devices/virtual/input/lge_touch/debug_option
+	chmod 664 /sys/devices/virtual/input/lge_touch/debug_option
+	chown system system /sys/devices/virtual/input/lge_touch/onhand
+	chmod 664 /sys/devices/virtual/input/lge_touch/onhand
+	chown system system /sys/devices/virtual/input/lge_touch/vr_status
+	chmod 664 /sys/devices/virtual/input/lge_touch/vr_status
+	chown system system /sys/devices/virtual/input/lge_touch/autotune
+	chmod 664 /sys/devices/virtual/input/lge_touch/autotune
+# END touch_driver
+
+# START touch_knock_on
+	chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
+	chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
+	chown system system /sys/devices/virtual/input/lge_touch/lpwg_notify
+	chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
+	chown system system /sys/devices/virtual/input/lge_touch/quick_cover_status
+	chmod 664 /sys/devices/virtual/input/lge_touch/quick_cover_status
+	chown system system /sys/devices/virtual/input/lge_touch/q_sensitivity
+	chmod 664 /sys/devices/virtual/input/lge_touch/q_sensitivity
+	chown system system /sys/devices/virtual/input/lge_touch/swipe_enable
+	chmod 664 /sys/devices/virtual/input/lge_touch/swipe_enable
+	chown system system /sys/devices/virtual/input/lge_touch/swipe_tool
+	chmod 664 /sys/devices/virtual/input/lge_touch/swipe_tool
+	chown system system /sys/devices/virtual/input/lge_touch/lpwg_abs
+	chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_abs
+	chown system system /sys/devices/virtual/input/lge_touch/voice_button
+	chmod 664 /sys/devices/virtual/input/lge_touch/voice_button
+# END touch_knock_on
+
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/vendor/misc 01771 system system
