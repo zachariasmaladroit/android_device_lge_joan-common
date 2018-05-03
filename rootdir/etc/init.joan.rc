@@ -1185,3 +1185,35 @@ service time_daemon /system/vendor/bin/time_daemon
 on property:vendor.rild.libpath=*
     setprop rild.libpath ${vendor.rild.libpath}
 
+# Touch_BSP, add call_state property, lockscreen property, vr_status property
+on property:ril.lge.touch.callstate=0
+	write /sys/devices/virtual/input/lge_touch/incoming_call 0
+on property:ril.lge.touch.callstate=1
+	write /sys/devices/virtual/input/lge_touch/incoming_call 1
+on property:ril.lge.touch.callstate=2
+	write /sys/devices/virtual/input/lge_touch/incoming_call 2
+on property:service.keyguard.status=0
+	write /sys/devices/virtual/input/lge_touch/keyguard 0
+on property:service.keyguard.status=1
+	write /sys/devices/virtual/input/lge_touch/keyguard 1
+on property:service.keyguard.status=2
+	write /sys/devices/virtual/input/lge_touch/keyguard 1
+on property:vrcore.mode.on=false
+	write /sys/devices/virtual/input/lge_touch/vr_status 0
+on property:vrcore.mode.on=true
+	write /sys/devices/virtual/input/lge_touch/vr_status 1
+
+on property:ro.boot.ksm=1
+	# Configure and enable KSM
+	write /sys/kernel/mm/ksm/pages_to_scan 100
+	write /sys/kernel/mm/ksm/sleep_millisecs 500
+	write /sys/kernel/mm/ksm/run 1
+
+# Begin Immersion Changes
+service immvibed /vendor/bin/immvibed -p 99 -u 1000
+    class core
+    user root
+    group root
+    oneshot
+# End Immersion Changes
+
