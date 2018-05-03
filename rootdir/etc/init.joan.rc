@@ -28,7 +28,6 @@
 # TODO: This MUST be blocked not use in LGE device configuration.
 import /vendor/etc/init/hw/init.joan.usb.rc
 import /vendor/etc/init/hw/init.${ro.hardware}.power.rc
-import /vendor/etc/init/hw/init.msm8998_core.rc
 
 on early-init
     mkdir /firmware 0771 system system
