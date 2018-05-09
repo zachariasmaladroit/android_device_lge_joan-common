@@ -49,7 +49,7 @@ while [ "$1" != "" ]; do
 done
 
 if [ -z "$SRC" ]; then
-    SRC=adb
+    SRC=/home/markus/ssd_home/V30/h930_V20d/tmp/
 fi
 
 # Initialize the helper for common device
