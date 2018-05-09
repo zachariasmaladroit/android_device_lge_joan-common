@@ -74,7 +74,7 @@ $(IMS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "IMS lib link: $@"
 	@mkdir -p $(dir $@)
 	@rm -rf $@
-	$(hide) ln -sf /system/vendor/lib64/$(notdir $@) $@
+	$(hide) ln -sf /vendor/lib64/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(IMS_SYMLINKS)
 
@@ -124,7 +124,7 @@ $(BDWLAN_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "BDWLAN firmware link: $@"
 	@mkdir -p $(dir $@)
 	@rm -rf $@
-	$(hide) ln -sf /system/etc/wifi/$(notdir $@) $@
+	$(hide) ln -sf /vendor/etc/wifi/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BDWLAN_SYMLINKS)
 
@@ -136,7 +136,7 @@ $(BTFW_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Bluetooth Firmware firmware link: $@"
 	@mkdir -p $(dir $@)
 	@rm -rf $@
-	$(hide) ln -sf /system/vendor/firmware/$(notdir $@) $@
+	$(hide) ln -sf /vendor/firmware/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BTFW_SYMLINKS)
 
