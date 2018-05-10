@@ -723,7 +723,7 @@ vendor/lib64/libhdr_tm.so
 # Hotword Enrollment
 -vendor/priv-app/HotwordEnrollmentOKGoogleHEXAGON/HotwordEnrollmentOKGoogleHEXAGON.apk;PRESIGNED
 -vendor/priv-app/HotwordEnrollmentTGoogleHEXAGON/HotwordEnrollmentTGoogleHEXAGON.apk;PRESIGNED
---vendor/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON.apk;PRESIGNED
+-vendor/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON.apk;PRESIGNED
 
 # Keystore
 vendor/lib/hw/keystore.msm8998.so
@@ -1014,7 +1014,7 @@ vendor/lib/hw/vr.joan.so
 vendor/lib64/hw/vr.joan.so
 
 # Wi-Fi
-etc/wifi/bdwlan.bin:vendor/etc/wifi/bdwlan.bin
-etc/wifi/bdwlan_ch0.bin:vendor/etc/wifi/bdwlan_ch0.bin
-etc/wifi/bdwlan_ch1.bin:vendor/etc/wifi/bdwlan_ch1.bin
-vendor/bin/cnss-daemon
+etc/wifi/bdwlan.bin:vendor/etc/firmware/wifi/q/bdwlan.bin
+etc/wifi/bdwlan_ch0.bin:vendor/etc/firmware/wifi/q/bdwlan_ch0.bin
+etc/wifi/bdwlan_ch1.bin:vendor/etc/firmware/wifi/q/bdwlan_ch1.bin
+vendor/bin/cnss-daemon|efb40f7bb97df7ca74a14127e13b6e92a7766e0c
